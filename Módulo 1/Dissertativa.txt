@@ -1,0 +1,10 @@
+Dissertativa:
+
+Passo 1:
+Solicitar ao usuário que digite um número inteiro entre 1 e 9.
+Passo 2:
+Calcular o valor do primeiro dígito subtraindo 1 de n. Armazenar o resultado em uma variável, por exemplo, dezena.
+Calcular o valor do segundo dígito subtraindo n de 10. Armazenar o resultado em uma variável, por exemplo, unidade.
+Calcular o resultado final multiplicando dezena por 10 e somando unidade.
+Passo 3:
+Exibir o resultado final ao usuário
