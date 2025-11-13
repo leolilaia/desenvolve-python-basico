@@ -1,0 +1,44 @@
+def setup_inicial():
+    """
+    Função auxiliar para criar o usuário gerente na primeira execução.
+    Deve ser usada apenas uma vez e depois removida ou comentada.
+    """
+    if os.path.exists(ARQUIVO_USUARIOS):
+        print("Arquivo de usuários já existe. Setup não é necessário.")
+        return
+
+    print("--- Setup Inicial: Criando Usuário Gerente ---")
+    print("Este usuário terá acesso total ao sistema.")
+    
+    username = input("Digite o username do gerente (ex: admin): ").strip()
+    senha = getpass.getpass("Digite a senha: ").strip()
+    senha_confirm = getpass.getpass("Confirme a senha: ").strip()
+    
+    if not username or not senha:
+        print("Username e senha não podem estar vazios. Setup falhou.")
+        return
+        
+    if senha != senha_confirm:
+        print("Senhas não conferem. Setup falhou.")
+        return
+        
+    usuario_gerente = {
+        "username": username,
+        "password_hash": hash_senha(senha),
+        "role": "gerente"
+    }
+    
+    # Salva o gerente no arquivo
+    salvar_dados(ARQUIVO_USUARIOS, [usuario_gerente], ['username', 'password_hash', 'role'])
+    print(f"Usuário gerente '{username}' criado com sucesso!")
+    print("Por favor, rode o programa novamente para fazer login.")
+
+# No final do arquivo, em vez de "if __name__ == '__main__': main()", use:
+if __name__ == "__main__":
+    # 1. Verifica se o setup inicial é necessário
+    if not os.path.exists(ARQUIVO_USUARIOS):s
+        setup_inicial()
+        sys.exit(0) # Encerra para o usuário rodar de novo
+    
+    # 2. Se o arquivo já existe, rode o programa normalmente
+    main()
